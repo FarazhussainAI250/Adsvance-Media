@@ -1,0 +1,151 @@
+/* Registration Page CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.company-number {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.header-buttons {
+    margin-bottom: 30px;
+}
+
+.btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+    border-radius: 2px;
+    font-weight: bold;
+}
+
+.green-btn {
+    background-color: #00703c;
+}
+
+.green-btn:hover {
+    background-color: #005a30;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+
+.tab {
+    padding: 12px 25px;
+    background: #eeeeee;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.tab.active {
+    background: white;
+    font-weight: bold;
+    border-bottom: 4px solid white;
+    position: relative;
+    top: 1px;
+    z-index: 10;
+}
+
+.content-card {
+    background: white;
+    border: 1px solid #ccc;
+    padding: 30px;
+    line-height: 1.6;
+}
+
+.info-group {
+    margin-bottom: 25px;
+}
+
+.label {
+    margin: 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.value {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid transparent;
+}
+
+.sub-text {
+    font-size: 16px;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #dee2e6;
+    margin: 20px 0;
+}
+
+.sic-codes {
+    list-style: none;
+    padding: 0;
+}
+
+.sic-codes li {
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    body { padding: 10px; }
+    .container { padding: 10px; }
+    h1 { font-size: 24px; }
+    .company-number { font-size: 16px; }
+    .header-buttons { display: flex; flex-direction: column; gap: 10px; }
+    .btn { width: 100%; text-align: center; }
+    .tabs { flex-wrap: wrap; overflow-x: auto; }
+    .tab { padding: 10px 15px; font-size: 14px; }
+    .content-card { padding: 20px 15px; }
+    .flex-row { flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 20px; }
+    .btn { padding: 8px 12px; font-size: 14px; }
+    .tab { padding: 8px 12px; font-size: 13px; }
+}
