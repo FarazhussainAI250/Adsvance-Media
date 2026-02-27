@@ -4094,58 +4094,40 @@ body.light-mode .video-projects-section h3 {
 }
 
 @media (max-width: 768px) {
-    .video-projects-section {
-        padding-top: 2rem !important;
-        margin-top: 3rem !important;
-    }
-    
     .video-projects-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 2rem;
     }
     
     .video-project-card {
-        padding: 1.5rem 1rem;
-        min-height: auto;
+        padding: 2rem 1.5rem;
+        margin-bottom: 1.5rem;
     }
     
     .video-project-card .video-container {
-        height: 180px !important;
+        height: 180px;
     }
     
     .video-project-card h4 {
-        font-size: 1.2rem;
-    }
-    
-    .video-project-card p {
-        font-size: 0.85rem;
-    }
-    
-    .video-frame {
-        height: 250px !important;
-    }
-    
-    #videoProjectModal .modal-content {
-        width: 95%;
-        padding: 1rem;
+        font-size: 1.5rem;
     }
 }
 
 @media (max-width: 480px) {
+    .video-projects-section {
+        padding: 6rem 3% 3rem;
+    }
+    
     .video-project-card {
-        padding: 1rem 0.8rem;
+        padding: 1.5rem 1rem;
     }
     
     .video-project-card .video-container {
-        height: 160px !important;
+        height: 160px;
     }
     
     .video-project-card h4 {
-        font-size: 1.1rem;
-    }
-    
-    .video-project-card p {
-        font-size: 0.8rem;
+        font-size: 1.3rem;
     }
 }
 
@@ -5047,16 +5029,16 @@ body.light-mode .client-reviews {
 
 .video-projects-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    gap: clamp(1.5rem, 5vw, 2.5rem);
     margin-bottom: 3rem;
 }
 
 .video-project-card {
     background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 204, 0.05));
-    border: 1px solid rgba(0, 212, 255, 0.3);
+    border: 1px solid rgba(0, 212, 255, 0.2);
     border-radius: 20px;
-    padding: 1.5rem;
+    padding: 2.5rem 1.8rem;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -5147,10 +5129,11 @@ body.light-mode .client-reviews {
 
 .video-project-card h4 {
     color: #00d4ff;
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
+    font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
     font-weight: 600;
     transition: all 0.3s ease;
+    line-height: 1.2;
 }
 
 .video-project-card:hover h4 {
@@ -5160,8 +5143,8 @@ body.light-mode .client-reviews {
 
 .video-project-card p {
     color: #ccc;
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    line-height: 1.8;
     transition: all 0.3s ease;
 }
 
