@@ -20,14 +20,14 @@ function toggleMobileMenu() {
 
 // Project Modal Functions
 const projectData = {
-    'Real-time Shop Manager App': {
-        title: 'Real-time Shop Manager App',
-        date: '2035-2035',
-        image: 'https://github.com/user-attachments/assets/6d43cf2a-979a-460d-a10f-86f95accfd4d',
-        description: 'Real-time shop management system jo inventory, sales, aur customer data ko efficiently manage karta hai.',
-        technologies: ['Python', 'Flask', 'SQLite', 'JavaScript' ],
-        features: ['Real-time Inventory Management', 'Sales Tracking', 'Customer Management'],
-        liveDemo: 'https://real-time-shop-manager-app-pcbyedja9nfal97jazetec.streamlit.app/',
+    'Elevate X Crew': {
+        title: 'Elevate X Crew',
+        date: '2025-2025',
+        image: 'https://github.com/user-attachments/assets/94c20047-c308-49f7-b9c8-e1614ac52396',
+        description: 'Driven by passion and innovation, ElevateXCrew transforms visions into meaningful results. Your growth is our mission and your success is our journey.',
+        technologies: ['React', 'Flask', 'SQLite', 'JavaScript' ],
+        features: ['AI Powered Talent Management', 'Smart Recruitment', 'Employee Performance Tracking'],
+        liveDemo: 'https://elevatexcrew.online/',
         sourceCode: 'https://github.com/FarazhussainAI250/Real-time-Shop-Manager-App'
     },
     'AI Medical Assistant': {
@@ -272,6 +272,16 @@ function currentTestimonial(index) {
 
 // Initialize everything when page loads
 document.addEventListener('DOMContentLoaded', function() {
+    // Contact form submission handler
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function() {
+            setTimeout(function() {
+                contactForm.reset();
+            }, 100);
+        });
+    }
+    
     // Auto-rotate testimonials every 3 seconds
     setInterval(() => {
         const testimonials = document.querySelectorAll('.testimonial-circle');
