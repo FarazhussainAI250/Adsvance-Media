@@ -937,16 +937,17 @@ function playVideo(container, videoId) {
 }
 </style>
 
-<script src="js/whatsapp-agent.js" defer></script>
+<script src="js/groq-chatbot.js" defer></script>
 <script>
 function toggleChat(){document.getElementById('chatBox').classList.toggle('active')}
-function sendMessage(){
+async function sendMessage(){
 const i=document.getElementById('userInput'),m=i.value.trim();
 if(!m)return;
 const c=document.querySelector('.chat-body');
 c.innerHTML+=`<div class="user-message">${m}</div>`;i.value='';c.scrollTop=c.scrollHeight;
 c.innerHTML+='<div class="typing-indicator"><span></span><span></span><span></span></div>';c.scrollTop=c.scrollHeight;
-setTimeout(()=>{c.querySelector('.typing-indicator').remove();c.innerHTML+=`<div class="bot-message">${getResponse(m)}</div>`;c.scrollTop=c.scrollHeight},600);
+const r=await getResponse(m);
+c.querySelector('.typing-indicator').remove();c.innerHTML+=`<div class="bot-message">${r}</div>`;c.scrollTop=c.scrollHeight;
 }
 </script>
 
