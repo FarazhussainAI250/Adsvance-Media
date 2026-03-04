@@ -2,31 +2,42 @@
 const GROQ_API_KEY = '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';
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
-// Company Knowledge Base
-const KB = {
-    c: {n: "ADSVANCE MEDIA", f: "2015", e: "contact@adsvancemedia.com", p: "+44 7491 116650", l: "12 windsor view Dewsbury Wf127ss"},
-    s: ["Generative AI - Custom AI solutions using GPT, Claude for chatbots & automation", "Machine Learning - Predictive models & ML algorithms", "UI/UX Design - Modern designs for engaging digital experiences", "Web Development - Full stack apps with React, Node.js, Flask", "Automation - Process automation with n8n", "Mobile App Development - Apps users love"],
-    t: ["SAJJAD A.K SULTAN - Director", "Muhammad Suleman - CEO, Full Stack Developer", "Aqsa Rani - Business Developer | AI Developer"],
-    p: ["Elevate X Crew", "AI Medical Assistant", "CV & Cover Letter Generator", "Learn Wise AI Model", "Freelancer Hourly Rate Predictor"],
-    pt: ["Inspiration Hair Nails & Beauty - inspirationhairnailsandbeauty.co.uk", "Coolx Electronics - coolx.com.pk", "Islamabad Laser & Skin Clinic - ilscbydraasma.com", "Atlas Auto Hire - atlasautohire.com"]
-};
+// Conversation history for context
+let conversationHistory = [];
 
-// System prompt with company context
-const SYSTEM_PROMPT = `You are a helpful AI assistant for ${KB.c.n}, a digital solutions company founded in ${KB.c.f}.
+// System prompt with PDF data
+const SYSTEM_PROMPT = `You are a professional Sales AI Assistant for ADSVANCE MEDIA.
 
-Company Info:
-- Services: ${KB.s.join(', ')}
-- Team: ${KB.t.join(', ')}
-- Contact: ${KB.c.e}, ${KB.c.p}
-- Location: ${KB.c.l}
-- Projects: ${KB.p.join(', ')}
-- Partners: ${KB.pt.join(', ')}
+Company Information:
+${typeof PDF_DATA !== 'undefined' ? PDF_DATA : 'Loading company data...'}
 
-Answer questions professionally and helpfully about the company, services, and general topics.`;
+YOUR ROLE:
+1. Engage clients professionally and warmly
+2. Understand their needs by asking smart questions
+3. Suggest the best services from our portfolio
+4. Build trust and close deals
+5. Generate beautiful proposals when client is ready
+6. For pricing/budget questions, provide contact: +44 7491 116650 or +44 7401 116650
+
+IMPORTANT RULES:
+- Keep responses SHORT and CONCISE (2-4 lines max)
+- Be friendly, professional, and solution-focused
+- Ask ONE qualifying question at a time
+- When client shows interest, create a BRIEF PROPOSAL with key points only
+- For pricing: "For pricing, contact our team at +44 7491 116650. They'll help you!"
+- Use emojis sparingly: ✨ 🚀 💼 ✅`;
 
 // Main function to get response
 async function getResponse(userMessage) {
     try {
+        // Add user message to history
+        conversationHistory.push({role: 'user', content: userMessage});
+        
+        // Keep only last 10 messages for context
+        if (conversationHistory.length > 10) {
+            conversationHistory = conversationHistory.slice(-10);
+        }
+
         const response = await fetch(GROQ_API_URL, {
             method: 'POST',
             headers: {
@@ -37,10 +48,10 @@ async function getResponse(userMessage) {
                 model: 'llama-3.3-70b-versatile',
                 messages: [
                     {role: 'system', content: SYSTEM_PROMPT},
-                    {role: 'user', content: userMessage}
+                    ...conversationHistory
                 ],
-                temperature: 0.7,
-                max_tokens: 500
+                temperature: 0.6,
+                max_tokens: 200
             })
         });
 
@@ -49,9 +60,14 @@ async function getResponse(userMessage) {
         }
 
         const data = await response.json();
-        return data.choices[0].message.content;
+        const botResponse = data.choices[0].message.content;
+        
+        // Add bot response to history
+        conversationHistory.push({role: 'assistant', content: botResponse});
+        
+        return botResponse;
     } catch (error) {
         console.error('Groq API Error:', error);
-        return `Sorry, I'm having trouble connecting. Please contact us at ${KB.c.e} or ${KB.c.p}`;
+        return `Technical issue. Please contact:\n📞 +44 7491 116650\n📧 contact@adsvancemedia.com`;
     }
 }
